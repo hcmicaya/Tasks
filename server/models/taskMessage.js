@@ -1,13 +1,11 @@
 import mongoose from "mongoose";
 
 const taskSchema = mongoose.Schema({
-    jobNumber: String,
+    projectNumber: String,
+    storeNumber: String,
     storeLocation: String,
-    assigned: [Strings],
-    deadline: {
-        type: Date,
-        default: new Date(),
-    },
+    assigned: [String],
+    deadline: String,
     comments: {
         type: [String],
         default: [],
