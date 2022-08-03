@@ -2,14 +2,12 @@ import mongoose from "mongoose";
 
 const taskSchema = mongoose.Schema({
     projectNumber: String,
+    phase: String,
     storeNumber: String,
-    storeLocation: String,
+    location: String,
     assigned: [String],
     deadline: String,
-    comments: {
-        type: [String],
-        default: [],
-    },
+    comments: String,
 });
 
 const TaskMessage = mongoose.model("TaskMessage", taskSchema);
