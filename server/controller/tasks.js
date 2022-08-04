@@ -2,8 +2,6 @@ import mongoose from "mongoose";
 import TaskMessage from "../models/taskMessage.js";
 
 export const getTasks = async (req, res) => {
-    const { page } = req.query;
-
     try {
         const tasks = await TaskMessage.find();
 

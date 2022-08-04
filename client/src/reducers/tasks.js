@@ -1,7 +1,12 @@
-import { CREATE, UPDATE, DELETE } from "../constants/actionTypes";
+import { CREATE, UPDATE, DELETE, FETCH_ALL } from "../constants/actionTypes";
 
 export default (state = { tasks: [] }, action) => {
     switch (action.type) {
+        case FETCH_ALL:
+            return {
+                ...state,
+                tasks: action.payload.data,
+            };
         case CREATE:
             return [...state.tasks, action.payload];
         case DELETE:

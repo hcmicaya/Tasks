@@ -20,6 +20,7 @@ export default function EventModal({ currentId, setCurrentId }) {
         location: "",
         assigned: "",
         comments: "",
+        deadline: daySelected.format("MM-DD-YY"),
     });
     const task = useSelector((state) =>
         currentId ? state.tasks.tasks.find((p) => p._id === currentId) : null
@@ -86,7 +87,10 @@ export default function EventModal({ currentId, setCurrentId }) {
                             schedule
                         </span>
                         <div className="flex gap-x-5 items-center">
-                            <p>{daySelected.format("dddd, MMMM DD")}</p>
+                            <p>
+                                {daySelected.format("dddd, MMMM DD")}
+                                {console.log(daySelected.format("MM-DD-YY"))}
+                            </p>
 
                             {Object.keys(labelsClasses).map((lblClass, i) => (
                                 <span

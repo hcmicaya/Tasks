@@ -22,7 +22,12 @@ function App() {
         <BrowserRouter>
             <React.Fragment>
                 <Routes>
-                    <Route path="/" exact element={<Home />} />
+                    <Route
+                        path="/"
+                        exact
+                        element={<Navigate replace to="/tasks" />}
+                    />
+                    <Route path="/tasks" exact element={<Home />} />
                 </Routes>
             </React.Fragment>
         </BrowserRouter>
