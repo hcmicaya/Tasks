@@ -8,6 +8,7 @@ const taskSchema = mongoose.Schema({
     assigned: [String],
     deadline: String,
     comments: String,
+    color: String,
 });
 
 const TaskMessage = mongoose.model("TaskMessage", taskSchema);

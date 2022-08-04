@@ -53,7 +53,7 @@ export default function Day({ day, rowIdx }) {
                 {/* {console.log(dayTasks)} */}
                 {dayTasks.map((task) => (
                     <div
-                        className={`bg-red-200 p-1 mr-3 text-gray-600 text-sm rounded mb-1 truncate`}
+                        className={`bg-${task.color}-200 p-1 mr-3 text-gray-600 text-sm rounded mb-1 truncate`}
                     >
                         {task.storeNumber} {""}
                         {task.location}

@@ -21,6 +21,7 @@ export default function EventModal({ currentId, setCurrentId }) {
         assigned: "",
         comments: "",
         deadline: daySelected.format("MM-DD-YY"),
+        color: "",
     });
     const task = useSelector((state) =>
         currentId ? state.tasks.tasks.find((p) => p._id === currentId) : null
@@ -99,6 +100,7 @@ export default function EventModal({ currentId, setCurrentId }) {
                                         setTaskData({
                                             ...taskData,
                                             phase: lblClass,
+                                            color: labelsClasses[lblClass],
                                         })
                                     }
                                     className={`bg-${labelsClasses[lblClass]}-500 rounded-lg flex  cursor-pointer items-center px-2`}
