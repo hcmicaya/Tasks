@@ -9,6 +9,13 @@ export default (state = { tasks: [] }, action) => {
             };
         case CREATE:
             return [...state.tasks, action.payload];
+        case UPDATE:
+            return {
+                ...state,
+                tasks: state.tasks.map((task) =>
+                    task._id === action.payload._id ? action.payload : task
+                ),
+            };
         case DELETE:
             return {
                 ...state,

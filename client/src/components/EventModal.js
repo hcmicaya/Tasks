@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import GlobalContext from "../context/GlobalContext";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -23,20 +23,32 @@ export default function EventModal({ currentId, setCurrentId }) {
         deadline: daySelected.format("MM-DD-YY"),
         color: "",
     });
+
     const task = useSelector((state) =>
         currentId ? state.tasks.tasks.find((p) => p._id === currentId) : null
     );
 
+    useEffect(() => {
+        if (selectedEvent) setTaskData(selectedEvent);
+    }, [selectedEvent]);
+
     function handleSubmit(e) {
         e.preventDefault();
-        if (currentId) {
-            dispatch(updateTask(currentId, { ...taskData }));
+        if (selectedEvent) {
+            console.log(taskData);
+            dispatch(updateTask({ ...taskData }));
         } else {
-            dispatch(createTask({ ...taskData }, navigate));
+            dispatch(createTask({ ...taskData }));
         }
 
         setShowEventModal(false);
     }
+
+    const buttonText = () => {
+        if (selectedEvent) return "Update";
+        return "Save";
+    };
+
     return (
         <div className="h-screen w-full fixed left-0 top-0 flex justify-center items-center">
             <form className="bg-white rounded-lg shadow-2xl w-1/4">
@@ -192,7 +204,9 @@ export default function EventModal({ currentId, setCurrentId }) {
                         onClick={handleSubmit}
                         className="bg-blue-500 hover:bg-blue-600 px-6 py-2 rounded text-white"
                     >
-                        Save
+                        {/* {console.log(selectedEvent._id)}
+                        {console.log(selectedEvent.location)} */}
+                        {buttonText()}
                     </button>
                 </footer>
             </form>

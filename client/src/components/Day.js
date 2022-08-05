@@ -18,9 +18,11 @@ export default function Day({ day, rowIdx }) {
     const dayTasks = tasks.filter(
         (task) => task.deadline === day.format("MM-DD-YY")
     );
+
     useEffect(() => {
         dispatch(getTasks());
-    }, []);
+    }, [setShowEventModal]);
+
     useEffect(() => {
         const events = filteredEvents.filter(
             (evt) =>
@@ -49,17 +51,7 @@ export default function Day({ day, rowIdx }) {
                     {day.format("DD")}
                 </p>
             </header>
-            <div>
-                {/* {console.log(dayTasks)} */}
-                {dayTasks.map((task) => (
-                    <div
-                        className={`bg-${task.color}-200 p-1 mr-3 text-gray-600 text-sm rounded mb-1 truncate`}
-                    >
-                        {task.storeNumber} {""}
-                        {task.location}
-                    </div>
-                ))}
-            </div>
+            <div>{/* {console.log(dayTasks)} */}</div>
             <div
                 className="flex-1 cursor-pointer"
                 onClick={() => {
@@ -74,6 +66,15 @@ export default function Day({ day, rowIdx }) {
                         className={`bg-${evt.label}-200 p-1 mr-3 text-gray-600 text-sm rounded mb-1 truncate`}
                     >
                         {evt.title}
+                    </div>
+                ))}
+                {dayTasks.map((task) => (
+                    <div
+                        onClick={() => setSelectedEvent(task)}
+                        className={`bg-${task.color}-200 p-1 mr-3 text-gray-600 text-sm rounded mb-1 truncate`}
+                    >
+                        {task.storeNumber} {""}
+                        {task.location}
                     </div>
                 ))}
             </div>
