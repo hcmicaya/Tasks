@@ -23,9 +23,21 @@ export const createTask = (task) => async (dispatch) => {
 export const updateTask = (task) => async (dispatch) => {
     try {
         const { data } = await api.updateTask(task);
-
+        console.log(task, data);
         dispatch({ type: UPDATE, payload: data });
     } catch (error) {
+        console.log(error);
+    }
+};
+
+export const deleteTask = (task) => async (dispatch) => {
+    try {
+        const data = { data: task };
+        await api.deleteTask(data);
+
+        dispatch({ type: DELETE, payload: data });
+    } catch (error) {
+        console.log(task);
         console.log(error);
     }
 };

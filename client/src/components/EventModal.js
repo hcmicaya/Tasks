@@ -3,7 +3,7 @@ import GlobalContext from "../context/GlobalContext";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-import { createTask, updateTask } from "../actions/tasks";
+import { createTask, deleteTask, updateTask } from "../actions/tasks";
 
 const labelsClasses = { OTP: "indigo", Revision: "green", Special: "red" };
 
@@ -35,7 +35,6 @@ export default function EventModal({ currentId, setCurrentId }) {
     function handleSubmit(e) {
         e.preventDefault();
         if (selectedEvent) {
-            console.log(taskData);
             dispatch(updateTask({ ...taskData }));
         } else {
             dispatch(createTask({ ...taskData }));
@@ -60,10 +59,7 @@ export default function EventModal({ currentId, setCurrentId }) {
                         {selectedEvent && (
                             <span
                                 onClick={() => {
-                                    dispatchCalEvent({
-                                        type: "delete",
-                                        payload: selectedEvent,
-                                    });
+                                    dispatch(deleteTask({ ...taskData }));
                                     setShowEventModal(false);
                                 }}
                                 className="material-icons-outlined text-gray-400 cursor-pointer"

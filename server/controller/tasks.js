@@ -46,11 +46,12 @@ export const updateTask = async (req, res) => {
 };
 
 export const deleteTask = async (req, res) => {
-    const { id } = req.params;
-
-    if (!mongoose.Types.ObjectId.isValid(id))
-        return res.status(404).send("No Task with that id");
-    await TaskMessage.findByIdAndRemove(id);
+    const task = req.body;
+    const _id = task._id;
+    console.log(task);
+    if (!mongoose.Types.ObjectId.isValid(_id))
+        return res.status(404).send(`No task with that id`);
+    await TaskMessage.findByIdAndRemove(_id);
 
     res.json({ message: "Task deleted successfully" });
 };

@@ -20,7 +20,7 @@ export default (state = { tasks: [] }, action) => {
             return {
                 ...state,
                 tasks: state.tasks.filter(
-                    (task) => task._id !== action.payload
+                    (task) => task._id !== action.payload._id
                 ),
             };
         default:
