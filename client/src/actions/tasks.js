@@ -1,20 +1,34 @@
-import { CREATE, UPDATE, DELETE, FETCH_ALL } from "../constants/actionTypes";
+import {
+    CREATE,
+    UPDATE,
+    DELETE,
+    FETCH_ALL,
+    START_LOADING,
+    END_LOADING,
+} from "../constants/actionTypes";
 import * as api from "../api/index.js";
 
 export const getTasks = () => async (dispatch) => {
     try {
+        dispatch({ type: START_LOADING });
+
         const { data } = await api.fetchTasks();
         dispatch({ type: FETCH_ALL, payload: data });
+
+        dispatch({ type: END_LOADING });
     } catch (error) {
         console.log(error.message);
     }
 };
 
-export const createTask = (task) => async (dispatch) => {
+export const createTask = (task, navigate) => async (dispatch) => {
     try {
-        const { data } = await api.createTask(task);
+        dispatch({ type: START_LOADING });
 
+        const { data } = await api.createTask(task);
+        navigate("/");
         dispatch({ type: CREATE, payload: data });
+        dispatch({ type: END_LOADING });
     } catch (error) {
         console.log(error);
     }

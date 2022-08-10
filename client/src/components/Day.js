@@ -4,9 +4,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { getTasks } from "../actions/tasks";
 import GlobalContext from "../context/GlobalContext";
 
-export default function Day({ day, rowIdx }) {
-    const dispatch = useDispatch();
+export default function Day({ day, rowIdx, task }) {
     const [dayEvents, setDayEvents] = useState([]);
+
     const {
         setDaySelected,
         setShowEventModal,
@@ -14,14 +14,6 @@ export default function Day({ day, rowIdx }) {
         setSelectedEvent,
         daySelected,
     } = useContext(GlobalContext);
-    const { tasks } = useSelector((state) => state.tasks);
-    const dayTasks = tasks.filter(
-        (task) => task.deadline === day.format("MM-DD-YY")
-    );
-
-    useEffect(() => {
-        dispatch(getTasks());
-    }, [setShowEventModal]);
 
     useEffect(() => {
         const events = filteredEvents.filter(
@@ -37,7 +29,7 @@ export default function Day({ day, rowIdx }) {
             ? "bg-blue-600 text-white rounded-full w-7"
             : "";
     }
-    return (
+    return task ? (
         <div className="border border-gray-200 flex flex-col">
             <header className="flex flex-col items-center">
                 {rowIdx === 0 && (
@@ -68,7 +60,7 @@ export default function Day({ day, rowIdx }) {
                         {evt.title}
                     </div>
                 ))}
-                {dayTasks.map((task) => (
+                {task.map((task) => (
                     <div
                         onClick={() => setSelectedEvent(task)}
                         className={`bg-${task.color}-200 p-1 mr-3 text-gray-600 text-sm rounded mb-1 truncate`}
@@ -79,5 +71,7 @@ export default function Day({ day, rowIdx }) {
                 ))}
             </div>
         </div>
+    ) : (
+        "Wew"
     );
 }

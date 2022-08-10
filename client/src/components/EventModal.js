@@ -37,7 +37,7 @@ export default function EventModal({ currentId, setCurrentId }) {
         if (selectedEvent) {
             dispatch(updateTask({ ...taskData }));
         } else {
-            dispatch(createTask({ ...taskData }));
+            dispatch(createTask({ ...taskData }, navigate));
         }
 
         setShowEventModal(false);
