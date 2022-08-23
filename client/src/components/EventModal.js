@@ -159,23 +159,6 @@ export default function EventModal({ currentId, setCurrentId }) {
                         </span>
 
                         <span className="material-icons-outlined text-gray-400">
-                            segment
-                        </span>
-                        <input
-                            type="text"
-                            name="comments"
-                            placeholder="Add comments"
-                            value={taskData.comments}
-                            required
-                            className="pt-3 border-0 text-gray-600 pb-2 w-full border-b-2 border-gray-200 focus:outline-none focus:ring-0 focus:border-blue-500"
-                            onChange={(e) =>
-                                setTaskData({
-                                    ...taskData,
-                                    comments: e.target.value,
-                                })
-                            }
-                        />
-                        <span className="material-icons-outlined text-gray-400">
                             perm_identity
                         </span>
                         <input
@@ -189,6 +172,23 @@ export default function EventModal({ currentId, setCurrentId }) {
                                 setTaskData({
                                     ...taskData,
                                     assigned: e.target.value,
+                                })
+                            }
+                        />
+                        <span className="material-icons-outlined text-gray-400">
+                            segment
+                        </span>
+                        <input
+                            type="text"
+                            name="comments"
+                            placeholder="Add comments"
+                            value={taskData.comments}
+                            required
+                            className="pt-3 border-0 text-gray-600 pb-2 w-full border-b-2 border-gray-200 focus:outline-none focus:ring-0 focus:border-blue-500"
+                            onChange={(e) =>
+                                setTaskData({
+                                    ...taskData,
+                                    comments: e.target.value,
                                 })
                             }
                         />

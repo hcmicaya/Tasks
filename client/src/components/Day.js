@@ -63,10 +63,52 @@ export default function Day({ day, rowIdx, task }) {
                 {task.map((task) => (
                     <div
                         onClick={() => setSelectedEvent(task)}
-                        className={`bg-${task.color}-200 p-1 mr-3 text-gray-600 text-sm rounded mb-1 truncate`}
+                        className={` p-1 rounded flex-auto justifty-self-center `}
                     >
-                        {task.storeNumber} {""}
-                        {task.location}
+                        <div
+                            className={
+                                "text-center text-lg font-bold text-blue-500"
+                            }
+                        >
+                            {task.projectNumber}
+                        </div>
+                        <table className="table-fixed border-collapse border-2 rounded border-gray-400 w-full break-all ">
+                            <thead className={`bg-${task.color}-200 rounded`}>
+                                <tr>
+                                    <th className="border-l border-b border-gray-200">
+                                        {task.phase}
+                                    </th>
+                                    <th className="border-l border-b border-gray-200">
+                                        {task.storeNumber}
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td className="border-l border-b border-gray-200">
+                                        Assigned:
+                                    </td>
+
+                                    {task.assigned.map((item) => (
+                                        <td className="border-l border-b border-gray-200">
+                                            {item}
+                                        </td>
+                                    ))}
+                                </tr>
+                                <tr>
+                                    <td className="border-l border-b border-gray-200">
+                                        Comments:
+                                    </td>
+                                    <td className="border-l border-b border-gray-200">
+                                        {task.comments}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        {/* <div className="grid grid-cols-2 gap-3">
+                            <div>{task.storeNumber}</div>
+                            <div>{task.location}</div>
+                        </div> */}
                     </div>
                 ))}
             </div>
