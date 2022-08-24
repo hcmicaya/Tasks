@@ -10,13 +10,13 @@ export default function Month({ month }) {
         dispatch(getTasks());
     }, []);
 
-    return tasks ? (
-        <div className="flex-1 grid grid-cols-7 grid-rows-5">
+    return (
+        <div className="flex-1 grid grid-cols-7  ">
             {month.map((row, i) => (
                 <React.Fragment key={i}>
                     {row.map((day, idx) => (
                         <Day
-                            task={tasks.filter(
+                            task={tasks?.filter(
                                 (task) =>
                                     task.deadline === day.format("MM-DD-YY")
                             )}
@@ -28,7 +28,5 @@ export default function Month({ month }) {
                 </React.Fragment>
             ))}
         </div>
-    ) : (
-        "wew"
     );
 }

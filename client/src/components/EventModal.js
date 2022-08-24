@@ -11,7 +11,6 @@ export default function EventModal({ currentId, setCurrentId }) {
     const { setShowEventModal, daySelected, dispatchCalEvent, selectedEvent } =
         useContext(GlobalContext);
     const dispatch = useDispatch();
-    const navigate = useNavigate();
 
     const [taskData, setTaskData] = useState({
         projectNumber: "",
@@ -37,7 +36,7 @@ export default function EventModal({ currentId, setCurrentId }) {
         if (selectedEvent) {
             dispatch(updateTask({ ...taskData }));
         } else {
-            dispatch(createTask({ ...taskData }, navigate));
+            dispatch(createTask({ ...taskData }));
         }
 
         setShowEventModal(false);
@@ -62,7 +61,7 @@ export default function EventModal({ currentId, setCurrentId }) {
                                     dispatch(deleteTask({ ...taskData }));
                                     setShowEventModal(false);
                                 }}
-                                className="material-icons-outlined text-gray-400 cursor-pointer"
+                                className="material-icons-outlined text-gray-400 cursor-pointer mr-2"
                             >
                                 delete
                             </span>

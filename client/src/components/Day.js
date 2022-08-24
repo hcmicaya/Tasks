@@ -29,8 +29,14 @@ export default function Day({ day, rowIdx, task }) {
             ? "bg-blue-600 text-white rounded-full w-7"
             : "";
     }
-    return task ? (
-        <div className="border border-gray-200 flex flex-col">
+    return (
+        <div
+            className="border border-gray-200 flex flex-col cursor-pointer"
+            onClick={() => {
+                setDaySelected(day);
+                setShowEventModal(true);
+            }}
+        >
             <header className="flex flex-col items-center">
                 {rowIdx === 0 && (
                     <p className="text-sm mt-1">
@@ -44,13 +50,7 @@ export default function Day({ day, rowIdx, task }) {
                 </p>
             </header>
             <div>{/* {console.log(dayTasks)} */}</div>
-            <div
-                className="flex-1 cursor-pointer"
-                onClick={() => {
-                    setDaySelected(day);
-                    setShowEventModal(true);
-                }}
-            >
+            <div className="flex-1 ">
                 {dayEvents.map((evt, idx) => (
                     <div
                         key={idx}
@@ -60,14 +60,14 @@ export default function Day({ day, rowIdx, task }) {
                         {evt.title}
                     </div>
                 ))}
-                {task.map((task) => (
+                {task?.map((task) => (
                     <div
                         onClick={() => setSelectedEvent(task)}
-                        className={` p-1 rounded flex-auto justifty-self-center `}
+                        className={` p-1 mb-3 rounded flex-auto justifty-self-center `}
                     >
                         <div
                             className={
-                                "text-center text-lg font-bold text-blue-500"
+                                "text-center text-lg font-bold text-blue-500 underline"
                             }
                         >
                             {task.projectNumber}
@@ -113,7 +113,5 @@ export default function Day({ day, rowIdx, task }) {
                 ))}
             </div>
         </div>
-    ) : (
-        "Wew"
     );
 }
